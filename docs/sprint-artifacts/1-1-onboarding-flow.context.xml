@@ -1,0 +1,146 @@
+<story-context id=".bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>1.1</storyId>
+    <title>onboarding-flow</title>
+    <status>drafted</status>
+    <generatedAt>2025-11-18</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/1-1-onboarding-flow.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>As a new user discovering mindful technology</asA>
+    <iWant>I want to experience a 12-step value-driven onboarding sequence</iWant>
+    <soThat>So that I understand MIGA's purpose and benefits before my first gateway experience</soThat>
+    <tasks>• Implement OnboardingModule with NavigationStack enum-based routing
+• Create 12 sequential onboarding screens using NavigationStack
+• Implement enum-based routing for step progression
+• Add @State path management for navigation state
+• Design welcome screen with "The Intentional Life Starts Now"
+• Create WelcomeView component
+• Implement "Begin My Journey" CTA button
+• Add proper styling and calming UI elements
+• Build value proposition flow (steps 1-6)
+• Core Mission step: "Your Attention Is Valuable"
+• Time Wasted step: "What's Autopilot Costing You?" with hourglass visual
+• Time Saved step: "Your Time. Your Purpose" with aspirational imagery
+• Behavioral Goal step: "Stop Reacting. Start Choosing"
+• Credibility step: "Habit Change Backed by Science" with 14-day reference
+• Trial Policy step: "Risk-Free Clarity. Try MIGA Today"
+• Implement personalization steps (steps 7-8)
+• Commitment slider step (1-10 scale) for readiness score
+• Content interests selection with tag selection UI
+• Save selections to UserDefaults for later recommendations
+• Create flow explanation and completion steps (steps 9-10)
+• Journey step: "Your 4 Steps to Freedom" with visual flow
+• Final Confirm step: "You're Ready to Reclaim Your Focus" with completion CTA
+• Navigate to hub after completion
+• Integrate onboarding state persistence
+• Persist completion state in UserDefaults
+• Track onboarding progression with Core Data entities
+• Block hub access until onboarding.isComplete == true
+• Add first-run experience overlay to hub
+• Display overlay on first hub visit post-onboarding
+• Guide through app hiding setup process
+• Handle setup completion and overlay dismissal
+• Implement accessibility and performance requirements
+• Add VoiceOver labels and Dynamic Type support
+• Ensure &lt;1s load times for onboarding screens
+• Add proper contrast ratios (4.5:1) and readable typography</tasks>
+  </story>
+
+  <acceptanceCriteria>• Given user has never opened MIGA before
+When user launches app for first time
+Then welcome screen displays with "The Intentional Life Starts Now"
+
+• And when user taps "Begin My Journey"
+Then step-by-step value proposition flow guides through: time awareness, behavioral goals, credibility through science, risk-free trial
+
+• And when user completes commitment slider and content interests selection
+Then proceeds to app hub with first-run experience overlay</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <artifact>
+        <path>docs/sprint-artifacts/tech-spec-epic-1.md</path>
+        <title>Epic Technical Specification: Foundation &amp; Onboarding</title>
+        <section>Detailed Design / Story 1.1: Onboarding Flow</section>
+        <snippet>OnboardingModule manages 12-step sequence through NavigationStack-based routing with enum-driven state progression. Core mission introduces MIGA's purpose through value-driven sequence. Personalization captures readiness score and content interests.</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/epics.md</path>
+        <title>MIGAxBM - Epic Breakdown</title>
+        <section>Epic 1: Foundation &amp; Onboarding / Story 1.1: Onboarding Flow</section>
+        <snippet>As a new user setting up MIGA for first time, I want experience a 12-step value-driven onboarding sequence, So that I understand MIGA's purpose before first gateway. Implementation with NavigationStack routing, state persistence in UserDefaults.</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/PRD.md</path>
+        <title>MIGA — Product Requirements Document</title>
+        <section>5.1 App Structure</section>
+        <snippet>Welcome / Onboarding screen introduces MIGA's purpose. SwiftUI intro flow with local onboarding state. Complete user setup screens with value-driven content and user personalization through 12-step sequence.</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/architecture.md</path>
+        <title>Architecture Decision Document: MIGA Mindfulness App</title>
+        <section>Onboarding Pattern / Navigation Architecture</section>
+        <snippet>Onboarding screens with NavigationStack enum-based routing for type-safe navigation flows. UserDefaults for preference persistence, MVVM pattern for onboarding logic coordination.</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/ux-design.md</path>
+        <title>MIGA MVP: UX Handoff Specification</title>
+        <section>C. Flow 1: Onboarding Sequence (12 Screens)</section>
+        <snippet>12-step onboarding sequence: Welcome screen, value propositions (time awareness, behavioral goals, credibility through science), personalization (commitment slider 1-10, content interests), journey explanation, completion navigation to hub.</snippet>
+      </artifact>
+    </docs>
+    <code>
+      <artifact>
+        <path>MIGAxBM/ContentView.swift</path>
+        <kind>view</kind>
+        <symbol>ContentView</symbol>
+        <lines></lines>
+        <reason>Main app view structure following SwiftUI patterns that onboarding should integrate with</reason>
+      </artifact>
+      <artifact>
+        <path>MIGAxBM/MIGAxBMApp.swift</path>
+        <kind>app</kind>
+        <symbol>MIGAxBMApp</symbol>
+        <lines></lines>
+        <reason>App entry point where onboarding flow should be triggered on first launch</reason>
+      </artifact>
+    </code>
+    <dependencies>
+      <ecosystem name="swift-package-manager">
+        <dependency name="Firebase" version="10.x" purpose="Analytics and Firestore for content loading after onboarding" />
+      </ecosystem>
+      <ecosystem name="ios-frameworks">
+        <dependency name="SwiftUI" version="iOS 17+" purpose="UI framework for onboarding screens" />
+        <dependency name="Core Data" version="iOS native" purpose="Data persistence for onboarding state" />
+        <dependency name="UserDefaults" version="iOS native" purpose="Preference storage for onboarding selections" />
+        <dependency name="LocalAuthentication" version="iOS native" purpose="Biometric validation for app hiding setup" />
+      </ecosystem>
+    </dependencies>
+  </artifacts>
+
+  <constraints>• OnboardingModule with NavigationStack enum-based routing (architecture alignment)
+• State persistence in UserDefaults for completion tracking
+• Core Data integration for onboarding progression entities
+• MVVM pattern with OnboardingViewModel for state coordination
+• 12-step value-driven sequence with personalization elements
+• Accessibility compliance with VoiceOver and Dynamic Type support
+• Performance requirements: &lt;1s screen load times, &lt;50MB memory footprint
+• Hub access blocked until onboarding.isComplete == true</constraints>
+
+  <interfaces></interfaces>
+
+  <tests>
+    <standards>Onboarding sequence follows SwiftUI testing patterns with unit tests for view models, integration tests for full flow, and UI tests for critical path validation. Tests should cover NavigationStack routing, state persistence, and accessibility compliance.</standards>
+    <locations>MIGAxBMTests/ for unit tests, MIGAxBMUITests/ for UI integration tests, following Xcode Test Navigator patterns.</locations>
+    <ideas>• Test welcome screen display on first launch (AC1)
+• Test 12-step value flow progression and state persistence (AC2)
+• Test personalization completion triggers hub navigation (AC3)
+• Test onboarding state blocks hub access when incomplete
+• Test accessibility features work across all screens
+• Test performance requirements under simulated conditions</ideas>
+  </tests>
+</story-context>
